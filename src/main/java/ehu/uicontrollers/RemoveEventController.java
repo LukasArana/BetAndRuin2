@@ -4,10 +4,18 @@ import ehu.businessLogic.BlFacade;
 import ehu.domain.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.skin.DatePickerSkin;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import ehu.ui.MainGUI;
 import ehu.utils.Dates;
@@ -62,21 +70,45 @@ public class RemoveEventController implements Controller {
 
     @FXML
     void removeClick(ActionEvent event) {
+        messageLbl.setText("");
         messageLbl.getStyleClass().clear();
         if(tblEvents.getSelectionModel().getSelectedItem() == null){
             messageLbl.setText(resources.getString("selectEvent"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }else{
-            Event selectedEvent =  tblEvents.getSelectionModel().getSelectedItem();
-            businessLogic.removeEvent(selectedEvent);
-            tblEvents.getItems().remove(selectedEvent);
-            tblEvents.getSelectionModel().select(null);
-            messageLbl.setText(resources.getString("removeEventSuccess"));
-            messageLbl.getStyleClass().setAll("lbl","lbl-success");
+            confirmation();
         }
 
     }
 
+    public void confirmation(){
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+
+        Label label1= new Label(resources.getString("removeConfirmation"));
+        Button bt1= new Button(resources.getString("Accept"));
+        Button bt2= new Button(resources.getString("Cancel"));
+        bt1.setOnAction(e -> {
+            remove();
+            dialog.close();
+        });
+        bt2.setOnAction(e -> dialog.close());
+        VBox dialogVbox = new VBox(10);
+        dialogVbox.getChildren().addAll(label1,bt1,bt2);
+        dialogVbox.setAlignment(Pos.CENTER);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    public void remove(){
+        Event selectedEvent =  tblEvents.getSelectionModel().getSelectedItem();
+        businessLogic.removeEvent(selectedEvent);
+        tblEvents.getItems().remove(selectedEvent);
+        tblEvents.getSelectionModel().select(null);
+        messageLbl.setText(resources.getString("removeEventSuccess"));
+        messageLbl.getStyleClass().setAll("lbl","lbl-success");
+    }
     private void setEventsPrePost(int year, int month) {
         LocalDate date = LocalDate.of(year, month, 1);
         setEvents(date.getYear(), date.getMonth().getValue());
