@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import ehu.businessLogic.*;
 import ehu.domain.Movement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,8 +18,13 @@ public class RemoveBetController implements Controller{
 
     private MainGUI mainGUI;
 
+    private BlFacadeImplementation businessLogic;
+
     @FXML
     private ResourceBundle resources;
+
+    @FXML
+    private Label errorLbl;
 
     @FXML
     private URL location;
@@ -55,6 +61,14 @@ public class RemoveBetController implements Controller{
 
     @FXML
     void removeBet(ActionEvent event) {
+        if (removeTable.getSelectionModel().getSelectedItem() == null){
+
+            errorLbl.setText("You must select a bet to delete");
+        }else {
+            removeTable.getItems().remove(removeTable.getSelectionModel().getSelectedItem());
+
+            moneyLbl.setText(String.valueOf(removeTable.getSelectionModel().getSelectedItem().getBalance() + businessLogic.getCurrency(mainGUI.getUsername())));
+        }
     }
 
     @FXML

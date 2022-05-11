@@ -18,6 +18,7 @@
       <Button fx:id="removeBtn" layoutX="210.0" layoutY="398.0" mnemonicParsing="false" onAction="#removeBet" text="%RemoveBet" />
       <Button fx:id="backBtn" layoutX="348.0" layoutY="398.0" mnemonicParsing="false" onAction="#goBack" text="%Back" />
       <Label fx:id="currentBalanceLbl" layoutX="184.0" layoutY="361.0" prefHeight="18.0" prefWidth="93.0" text="%Current balance" />
-      <Label fx:id="moneyLbl" layoutX="334.0" layoutY="362.0" />
+      <Label fx:id="moneyLbl" layoutX="334.0" layoutY="362.0" prefHeight="18.0" prefWidth="38.0" />
+      <Label fx:id="errorLbl" layoutX="160.0" layoutY="435.0" prefHeight="18.0" prefWidth="319.0" />
    </children>
 </AnchorPane>
