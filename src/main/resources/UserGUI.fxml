@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="338.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.UserGUIController">
+<AnchorPane prefHeight="338.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.UserGUIController">
    <children>
       <Button fx:id="browseBtn" layoutX="81.0" layoutY="76.0" mnemonicParsing="false" onAction="#browseClick" prefHeight="25.0" prefWidth="167.0" text="%BrowseQuestions" />
       <Button fx:id="placeBetBtn" layoutX="81.0" layoutY="118.0" mnemonicParsing="false" onAction="#placeClick" prefHeight="25.0" prefWidth="167.0" text="%PlaceBet" />

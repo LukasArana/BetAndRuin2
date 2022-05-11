@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="466.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.RemoveBetController">
+<AnchorPane prefHeight="466.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.RemoveBetController">
    <children>
       <TableView fx:id="removeTable" layoutX="117.0" layoutY="47.0" prefHeight="294.0" prefWidth="444.0">
         <columns>

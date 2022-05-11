@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="245.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.DepositMoneyController">
+<AnchorPane prefHeight="245.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.DepositMoneyController">
    <children>
       <Label layoutX="40.0" layoutY="42.0" text="%currentBalance" />
       <Label layoutX="41.0" layoutY="79.0" text="%DepositMoney" />

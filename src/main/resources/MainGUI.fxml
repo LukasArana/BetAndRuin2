@@ -6,7 +6,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.MainGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="356.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.MainGUIController">
    <children>
       <Label fx:id="selectOptionLbl" contentDisplay="CENTER" layoutX="87.0" layoutY="20.0" prefHeight="18.0" prefWidth="181.0" text="%SelectUseCase" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" />
       <Button fx:id="browseQuestionsBtn" layoutX="87.0" layoutY="53.0" mnemonicParsing="false" onAction="#browseQuestions" prefHeight="26.0" prefWidth="181.0" text="%BrowseQuestions" />

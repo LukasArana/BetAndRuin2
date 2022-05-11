@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="463.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.PlaceBetController">
+<AnchorPane prefHeight="463.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.PlaceBetController">
     <children>
         <DatePicker fx:id="datepicker" layoutX="309.0" layoutY="45.0" />
         <Label layoutX="365.0" layoutY="27.0" text="%EventDate" />

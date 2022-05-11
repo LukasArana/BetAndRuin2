@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="405.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.RemoveEventController">
+<AnchorPane prefHeight="405.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.RemoveEventController">
     <children>
         <DatePicker fx:id="datepicker" layoutX="24.0" layoutY="78.0" />
         <Label layoutX="24.0" layoutY="49.0" text="%EventDate" />

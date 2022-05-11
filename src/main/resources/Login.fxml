@@ -6,14 +6,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="218.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.LoginController">
+<AnchorPane prefHeight="218.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.LoginController">
    <children>
       <Label layoutX="37.0" layoutY="55.0" text="%User" />
       <Label layoutX="40.0" layoutY="98.0" text="%Password" />
       <TextField fx:id="usrField" layoutX="125.0" layoutY="50.0" prefHeight="26.0" prefWidth="179.0" />
       <PasswordField fx:id="passField" layoutX="125.0" layoutY="93.0" prefHeight="26.0" prefWidth="179.0" />
-      <Button fx:id="loginBtn" layoutX="215.0" layoutY="140.0" mnemonicParsing="false" onAction="#loginAction" text="%LogIn" />
-      <Button fx:id="registerBtn" layoutX="95.0" layoutY="140.0" mnemonicParsing="false" onAction="#registerAction" text="%Register" />
+      <Button fx:id="loginBtn" layoutX="272.0" layoutY="141.0" mnemonicParsing="false" onAction="#loginAction" text="%LogIn" />
+      <Button fx:id="registerBtn" layoutX="156.0" layoutY="141.0" mnemonicParsing="false" onAction="#registerAction" text="%Register" />
       <Label fx:id="answrLbl" layoutX="41.0" layoutY="176.0" prefHeight="18.0" prefWidth="278.0" textAlignment="CENTER" />
+      <Button fx:id="LostPassword" layoutX="14.0" layoutY="141.0" mnemonicParsing="false" onAction="#lostPasswordPressed" text="Lost password" />
    </children>
 </AnchorPane>

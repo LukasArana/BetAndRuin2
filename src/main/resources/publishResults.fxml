@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="422.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uicontrollers.publishResultsController">
+<AnchorPane prefHeight="422.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.publishResultsController">
    <children>
       <DatePicker fx:id="datePicker" layoutX="232.0" layoutY="36.0" />
       <TableView fx:id="tblEvents" layoutX="52.0" layoutY="86.0" prefHeight="200.0" prefWidth="216.0">
