@@ -1,5 +1,7 @@
 package ehu.dataAccess;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -271,6 +273,13 @@ public class DataAccess {
 				config.isDataAccessLocal() + " getDatabBaseOpenMode: " + config.getDataBaseOpenMode());
 
 		String fileName = config.getDataBaseFilename();
+
+		if (Files.exists(Paths.get(System.getProperty("user.home") + "/config/" + fileName))) {
+			System.out.println("Opening db from user.home");
+			fileName = System.getProperty("user.home") + "/config/" + fileName;
+		}
+		System.setProperty("objectdb.home", System.getProperty("user.home") + "/config"); // new $objectdb
+
 		if (initializeMode) {
 			fileName = fileName + ";drop";
 			System.out.println("Deleting the DataBase");
