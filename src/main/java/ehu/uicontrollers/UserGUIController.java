@@ -102,5 +102,9 @@ public class UserGUIController implements Controller {
         answerLbl.getStyleClass().setAll("lbl","lbl-warning");
 
     }
+    @FXML
+    void removeBet(ActionEvent event){
+        mainGUI.showRemoveBet();
+    }
 
 }

@@ -6,7 +6,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Bet {
-    private fee fee;
+    private Fee fee;
     private Float stake;
     @Id
     @GeneratedValue
@@ -16,12 +16,12 @@ public class Bet {
     //@Id
     //private Question betEvent;
 
-    public Bet(ehu.domain.fee fee, Float stake) {
+    public Bet(Fee fee, Float stake) {
         this.fee = fee;
         this.stake = stake;
     }
 
-    public fee getFee(){
+    public Fee getFee(){
         return this.fee;
     }
 
@@ -31,8 +31,8 @@ public class Bet {
 
 
     /**
-    public Bet(fee fee, Float stake, String username, Question betEvent) {
-        this.fee = fee;
+    public Bet(Fee Fee, Float stake, String username, Question betEvent) {
+        this.Fee = Fee;
         this.stake = stake;
         this.username = username;
         this.betEvent = betEvent;

@@ -2,8 +2,8 @@ package ehu.uicontrollers;
 
 import ehu.businessLogic.BlFacade;
 import ehu.domain.Event;
+import ehu.domain.Fee;
 import ehu.domain.Question;
-import ehu.domain.fee;
 import ehu.utils.Dates;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
-public class publishResultsController implements Controller {
+public class PublishResultsController implements Controller {
 
     @FXML
     private Button backBtn;
@@ -53,7 +53,7 @@ public class publishResultsController implements Controller {
     private Label messageLbl;
 
     @FXML
-    private ComboBox<fee> resultCombo;
+    private ComboBox<Fee> resultCombo;
 
     @FXML
     private ResourceBundle resources;
@@ -61,10 +61,10 @@ public class publishResultsController implements Controller {
     private MainGUI mainGUI;
     private BlFacade businessLogic;
     private List<LocalDate> holidays = new ArrayList<>();
-    private ObservableList<fee> fees;
+    private ObservableList<Fee> Fees;
 
 
-    public publishResultsController(BlFacade businessLogic) {
+    public PublishResultsController(BlFacade businessLogic) {
         this.businessLogic = businessLogic;
     }
 
@@ -203,10 +203,10 @@ public class publishResultsController implements Controller {
         tblQuestions.getSelectionModel().selectedItemProperty().addListener((obs, oldselection, newselection) -> {
             if(newselection != null){
                 resultCombo.getItems().clear();
-                fees = FXCollections.observableArrayList(new ArrayList<>());
-                fees.setAll(tblQuestions.getSelectionModel().getSelectedItem().getFeeList());
-                //fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
-                resultCombo.setItems(fees);
+                Fees = FXCollections.observableArrayList(new ArrayList<>());
+                Fees.setAll(tblQuestions.getSelectionModel().getSelectedItem().getFeeList());
+                //Fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
+                resultCombo.setItems(Fees);
                 if(resultCombo.getItems().size() == 0){
                     messageLbl.setText(resources.getString("noFees"));
                     messageLbl.getStyleClass().setAll("lbl", "lbl-danger");

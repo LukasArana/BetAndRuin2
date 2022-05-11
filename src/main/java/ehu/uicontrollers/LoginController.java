@@ -78,6 +78,7 @@ public class LoginController implements Controller {
         mainGUI.showLostPassword();
     }
 
+
     @Override
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;

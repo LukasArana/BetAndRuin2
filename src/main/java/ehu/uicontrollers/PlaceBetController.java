@@ -2,8 +2,8 @@ package ehu.uicontrollers;
 
 import ehu.businessLogic.BlFacade;
 import ehu.domain.Event;
+import ehu.domain.Fee;
 import ehu.domain.Question;
-import ehu.domain.fee;
 import ehu.utils.Dates;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,7 +41,7 @@ public class PlaceBetController implements Controller {
     private TableColumn<Event, String> ec2;
 
     @FXML
-    private ComboBox<fee> feeComboBox;
+    private ComboBox<Fee> feeComboBox;
 
     @FXML
     private TableColumn<Question, Integer> qc1;
@@ -73,7 +73,7 @@ public class PlaceBetController implements Controller {
     private MainGUI mainGUI;
     private BlFacade businessLogic;
     private List<LocalDate> holidays = new ArrayList<>();
-    private ObservableList<fee> fees;
+    private ObservableList<Fee> Fees;
 
     public PlaceBetController(BlFacade bl) {
         businessLogic = bl;
@@ -97,7 +97,7 @@ public class PlaceBetController implements Controller {
 
     @FXML
     void placeBetClick(ActionEvent event) {
-        fee f = feeComboBox.getSelectionModel().getSelectedItem();
+        Fee f = feeComboBox.getSelectionModel().getSelectedItem();
         Event ev = tblEvents.getSelectionModel().getSelectedItem();
         Question q = tblQuestions.getSelectionModel().getSelectedItem();
         messageLbl.getStyleClass().clear();
@@ -225,10 +225,10 @@ public class PlaceBetController implements Controller {
         tblQuestions.getSelectionModel().selectedItemProperty().addListener((obs, oldselection, newselection) -> {
             if(newselection != null){
                 feeComboBox.getItems().clear();
-                fees = FXCollections.observableArrayList(new ArrayList<>());
-                fees.setAll(tblQuestions.getSelectionModel().getSelectedItem().getFeeList());
-                //fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
-                feeComboBox.setItems(fees);
+                Fees = FXCollections.observableArrayList(new ArrayList<>());
+                Fees.setAll(tblQuestions.getSelectionModel().getSelectedItem().getFeeList());
+                //Fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
+                feeComboBox.setItems(Fees);
                 if(feeComboBox.getItems().size() == 0){
                     betBt.setDisable(true);
                     messageLbl.setText(resources.getString("noFees"));

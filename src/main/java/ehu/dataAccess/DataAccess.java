@@ -97,9 +97,9 @@ public class DataAccess {
 				q6 = ev17.addQuestion("¿Habrá goles en la primera parte?", 2);
 			} else if (Locale.getDefault().equals(new Locale("en"))) {
 				q1 = ev1.addQuestion("Who will win the match?", 1);
-				q1.addFee(new fee((float) 1.9, "Atletico"));
-				q1.addFee(new fee((float) 3.5, "Draw"));
-				q1.addFee(new fee((float) 3.0, "Athletic"));
+				q1.addFee(new Fee((float) 1.9, "Atletico"));
+				q1.addFee(new Fee((float) 3.5, "Draw"));
+				q1.addFee(new Fee((float) 3.0, "Athletic"));
 				q2 = ev1.addQuestion("Who will score first?", 2);
 				q3 = ev11.addQuestion("Who will win the match?", 1);
 				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);
@@ -114,7 +114,7 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 			}
 
-			fee f1 = q1.addFee(new fee(5F,"Atletico"));
+			Fee f1 = q1.addFee(new Fee(5F,"Atletico"));
 
 			User u2 = new User("user", "user", false);
 			User u1 = new User("admin", "admin", true);
@@ -201,7 +201,6 @@ public class DataAccess {
 				Event.class);
 		query.setParameter(1, date);
 		List<Event> events = query.getResultList();
-		System.out.println(events);
 		for (Event ev : events) {
 			System.out.println(" Eventua: " + ev.toString());
 			res.add(ev);
@@ -222,7 +221,6 @@ public class DataAccess {
 
 		Date firstDayMonthDate = UtilDate.firstDayMonth(date);
 		Date lastDayMonthDate = UtilDate.lastDayMonth(date);
-		db.getMetamodel().entity(Event.class);
 		TypedQuery<Date> query = db.createQuery("SELECT DISTINCT ev.eventDate FROM Event ev "
 				+ "WHERE ev.eventDate BETWEEN ?1 and ?2", Date.class);
 		query.setParameter(1, firstDayMonthDate);
@@ -327,8 +325,8 @@ public class DataAccess {
 		return (userList.isEmpty() == false);
 	}
 
-	public fee setFee(String result, Float fee, String quest, Event ev) {
-		fee f = new fee(fee, result);
+	public Fee setFee(String result, Float fee, String quest, Event ev) {
+		Fee f = new Fee(fee, result);
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
 		q1.setParameter(1, quest);
 		List<Question> questList = q1.getResultList();
@@ -346,7 +344,7 @@ public class DataAccess {
 		q1.setParameter(1, s);
 		List<Question> questList = q1.getResultList();
 		Question q = questList.get(0);
-		for (fee fe : q.getFeeList()) {
+		for (Fee fe : q.getFeeList()) {
 			if (fe.getResult().equals(f)) {
 				return true;
 			}
@@ -406,7 +404,7 @@ public class DataAccess {
 		}
 		return current;
 	}
-	public void placeBet(float stake, String username, fee f, Question q, Event e){
+	public void placeBet(float stake, String username, Fee f, Question q, Event e){
 		db.getTransaction().begin();
 		Bet b = new Bet(f, stake);
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
@@ -425,7 +423,7 @@ public class DataAccess {
 
 	}
 
-	public void payWinners(Question q, fee f) {
+	public void payWinners(Question q, Fee f) {
 		db.getTransaction().begin();
 		TypedQuery<Question> q2 = db.createQuery("SELECT q FROM Question q WHERE q.questionNumber=?1",Question.class);
 		q2.setParameter(1,q.getQuestionNumber());

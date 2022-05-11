@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
-import ehu.uicontrollers.*;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -73,8 +72,8 @@ public class MainGUI {
       else if(controllerClass == RegisterController.class){
         return new RegisterController(businessLogic);
       }
-      else if(controllerClass == setFeesController.class){
-        return new setFeesController(businessLogic);
+      else if(controllerClass == SetFeesController.class){
+        return new SetFeesController(businessLogic);
       }
       else if(controllerClass == CreateEventsController.class){
         return new CreateEventsController(businessLogic);
@@ -91,8 +90,8 @@ public class MainGUI {
       else if (controllerClass == ShowMovementsController.class){
         return new ShowMovementsController(businessLogic);
       }
-      else if(controllerClass == publishResultsController.class){
-        return new publishResultsController(businessLogic);
+      else if(controllerClass == PublishResultsController.class){
+        return new PublishResultsController(businessLogic);
       }
       else if(controllerClass == LostPasswordController.class){
         return new LostPasswordController(businessLogic);
@@ -194,7 +193,7 @@ public class MainGUI {
   }
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}
   public void showPublishResults(){setupScene(publishResultsWin.ui,"PublishResults",640,462);}
-  public void removeBet(){setupScene(removeBet.ui, "RemoveBet", 670, 470);}
+  public void showRemoveBet(){setupScene(removeBet.ui, "RemoveBet", 670, 470);}
   public void showRemoveEvent(){setupScene(removeEventWin.ui,"RemoveEvent", 590, 430);}
 
   private void setupScene(Parent ui, String title, int width, int height) {

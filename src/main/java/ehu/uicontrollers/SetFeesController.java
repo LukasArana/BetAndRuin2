@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.*;
 
-public class setFeesController implements Controller {
+public class SetFeesController implements Controller {
 
     @FXML
     private ResourceBundle resources;
@@ -73,7 +73,7 @@ public class setFeesController implements Controller {
 
     private List<LocalDate> holidays = new ArrayList<>();
 
-    public setFeesController(BlFacade bl) {
+    public SetFeesController(BlFacade bl) {
         businessLogic = bl;
     }
 

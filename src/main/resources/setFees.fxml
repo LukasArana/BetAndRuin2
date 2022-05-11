@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="424.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.setFeesController">
+<AnchorPane prefHeight="424.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ehu.uicontrollers.SetFeesController">
    <children>
       <DatePicker fx:id="dateSelector" layoutX="46.0" layoutY="45.0" />
       <TableView fx:id="eventTable" layoutX="275.0" layoutY="45.0" prefHeight="143.0" prefWidth="294.0">

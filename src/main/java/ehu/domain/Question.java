@@ -26,17 +26,17 @@ public class Question implements Serializable {
 	private String result;  
 	
 
-	private ArrayList<fee> feeList = new ArrayList<>();
+	private ArrayList<Fee> feeList = new ArrayList<>();
 
 	//@XmlIDREF
 	private Event event;
 	
-	public fee addFee(fee f) {
+	public Fee addFee(Fee f) {
 		feeList.add(f);
         return f;
     }
 	
-	public ArrayList<fee> getFeeList(){
+	public ArrayList<Fee> getFeeList(){
 		return this.feeList;
 	}
 
