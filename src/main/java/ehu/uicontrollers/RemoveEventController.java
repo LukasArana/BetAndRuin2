@@ -43,7 +43,8 @@ public class RemoveEventController implements Controller {
     private BlFacade businessLogic;
     private List<LocalDate> holidays = new ArrayList<>();
 
-
+    @FXML
+    private ResourceBundle resources;
 
 
     public RemoveEventController(BlFacade bl) {
@@ -52,6 +53,8 @@ public class RemoveEventController implements Controller {
 
     @FXML
     void closeClick(ActionEvent event) {
+        messageLbl.setText("");
+        messageLbl.getStyleClass().clear();
         tblEvents.getItems().clear();
         datepicker.getEditor().clear();
         mainGUI.showMain();
@@ -59,8 +62,19 @@ public class RemoveEventController implements Controller {
 
     @FXML
     void removeClick(ActionEvent event) {
-        messageLbl.setText("You must choose an event");
-        messageLbl.getStyleClass().setAll("lbl","lbl-danger");
+        messageLbl.getStyleClass().clear();
+        if(tblEvents.getSelectionModel().getSelectedItem() == null){
+            messageLbl.setText(resources.getString("selectEvent"));
+            messageLbl.getStyleClass().setAll("lbl","lbl-danger");
+        }else{
+            Event selectedEvent =  tblEvents.getSelectionModel().getSelectedItem();
+            businessLogic.removeEvent(selectedEvent);
+            tblEvents.getItems().remove(selectedEvent);
+            tblEvents.getSelectionModel().select(null);
+            messageLbl.setText(resources.getString("removeEventSuccess"));
+            messageLbl.getStyleClass().setAll("lbl","lbl-success");
+        }
+
     }
 
     private void setEventsPrePost(int year, int month) {

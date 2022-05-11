@@ -471,6 +471,11 @@ public class DataAccess {
 		db.getTransaction().commit();
 	}
 
+	public void removeEvent(Event event){
+		db.getTransaction().begin();
+		db.remove(event);
+		db.getTransaction().commit();
+	}
 /*	public Vector<Movement> getMovements() {
 		Vector<Movement> res = new Vector<>();
 		return res;

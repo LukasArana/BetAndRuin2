@@ -221,4 +221,8 @@ public class BlFacadeImplementation implements BlFacade {
 		dbManager.changePassword(user, pass);
 	}
 
+	@Override
+	public void removeEvent(Event event) {dbManager.removeEvent(event);
+	}
+
 }

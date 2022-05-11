@@ -98,9 +98,9 @@ public class MainGUI {
       } else if (controllerClass == ChangePasswordController.class){
         return new ChangePasswordController(businessLogic);
       }
-      //else if(controllerClass == RemoveEventController.class){
-        //return new RemoveEventController(businessLogic);
-      //}
+      else if(controllerClass == RemoveEventController.class){
+        return new RemoveEventController(businessLogic);
+      }
       else {
         // default behavior for controllerFactory:
         try {
@@ -138,7 +138,7 @@ public class MainGUI {
     publishResultsWin = load("/publishResults.fxml");
     lostPassword = load("/lostPassword.fxml");
     changePassword = load("/ChangePassword.fxml");
-   // removeEventWin = load("/RemoveEvent.fxml");
+    removeEventWin = load("/RemoveEvent.fxml");
 
     showLogin();
 

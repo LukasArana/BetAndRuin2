@@ -92,4 +92,6 @@ public interface BlFacade  {
 	String getEmail(String username);
 
     void setPassword(String user, String code);
+
+	void removeEvent(Event event);
 }
