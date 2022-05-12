@@ -202,7 +202,7 @@ public class MainGUI {
   public void showPublishResults(){setupScene(publishResultsWin.ui,"PublishResults",640,462);}
   public void showRemoveBet(){
     ((RemoveBetController)removeBet.c).startTable();
-    setupScene(removeBet.ui, "RemoveBet", 670, 470);}
+    setupScene(removeBet.ui, "RemoveBet", 670, 500);}
   public void showRemoveEvent(){setupScene(removeEventWin.ui,"RemoveEvent", 590, 430);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
