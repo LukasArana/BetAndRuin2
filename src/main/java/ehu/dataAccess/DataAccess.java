@@ -212,10 +212,11 @@ public class DataAccess {
 		return res;
 	}
 
-	public Date getEventDate(Movement move){
+	/*public Date getEventDate(Movement move){
 		System.out.println(">> DataAccess: getEventDate");
 		Date d = new Date();
-		TypedQuery<Event> event = db.createQuery("select ev from Event ev where ev.description=?1", Event.class);
+		TypedQuery<Event> event = db.createQuery("select ev from Event ev where ev.description=?1" ,
+				Event.class);
 		event.setParameter(1, move.getEvent());
 		Event ev2 = event.getSingleResult();
 
@@ -224,7 +225,7 @@ public class DataAccess {
 		System.out.println("Datak = " + d);
 		return d;
 
-	}
+	}*/
 
 	/**
 	 * This method retrieves from the database the dates in a month for which there are events

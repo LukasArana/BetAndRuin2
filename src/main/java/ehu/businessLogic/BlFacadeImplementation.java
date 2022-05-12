@@ -121,13 +121,13 @@ public class BlFacadeImplementation implements BlFacade {
 		return dates;
 	}
 
-	@Override
+	/*@Override
 	public Date getEventDate(Movement move) {
 		dbManager.open(false);
 		Date d = dbManager.getEventDate(move);
 		dbManager.close();
 		return d;
-	}
+	}*/
 
 
 	public void close() {

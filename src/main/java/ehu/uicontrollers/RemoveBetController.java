@@ -72,15 +72,25 @@ public class RemoveBetController implements Controller{
 
     @FXML
     void removeBet(ActionEvent event) {
-        if (removeTable.getSelectionModel().getSelectedItem() == null){
+
+        User actual = businessLogic.getCurrentUser();
+        Movement selected = removeTable.getSelectionModel().getSelectedItem();
+
+        if (selected == null){
             errorLbl.getStyleClass().setAll("lbl", "lbl-danger");
             errorLbl.setText("You must select a bet to delete");
         }else {
-            Float actualBalance = businessLogic.getCurrency(mainGUI.getUsername()) -
-                            removeTable.getSelectionModel().getSelectedItem().getBalance();
+            Float actualBalance = businessLogic.getCurrency(actual.getUsername()) - selected.getBalance();
             moneyLbl.setText(String.valueOf(actualBalance));
-            businessLogic.updateCurrency(actualBalance, mainGUI.getUsername());
+            businessLogic.updateCurrency(actualBalance - actual.getAvailableMoney(), actual.getUsername());
             removeTable.getItems().remove(removeTable.getSelectionModel().getSelectedItem());
+            int i = 0;
+            while (actual.getMovements().get(i) != selected){
+                i++;
+            }
+            actual.getMovements().remove(i);
+            errorLbl.setText("Bet removed");
+            errorLbl.getStyleClass().setAll("lbl", "lbl-success");
 
         }
     }
@@ -92,10 +102,11 @@ public class RemoveBetController implements Controller{
     public void setMainApp(MainGUI mainGUI) {this.mainGUI = mainGUI;}
 
     public void startTable(){
-        moneyLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
 
         User actual = businessLogic.getCurrentUser();
+        moneyLbl.setText(String.valueOf(businessLogic.getCurrency(actual.getUsername())));
         removeTable.getItems().clear();
+
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
@@ -106,13 +117,12 @@ public class RemoveBetController implements Controller{
         Date now = new Date();
 
         for(Movement m: actual.getMovements()){
-            Date betDate = businessLogic.getEventDate(m);
-            if (m.getBalance() < 0 & now.before(betDate)){
+            if (m.getBalance() < 0){
                 data.add(m);
             }
         }
 
-        Collections.reverse(data);
+        //Collections.reverse(data);
 
         removeTable.getItems().addAll(data);
 

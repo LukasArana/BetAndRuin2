@@ -92,5 +92,5 @@ public interface BlFacade  {
 
 	void removeEvent(Event event);
 
-	Date getEventDate(Movement move);
+	//Date getEventDate(Movement move);
 }
