@@ -25,7 +25,7 @@ import java.nio.file.Paths;
  */
 public class ConfigXML {
 
-	private static final String CONFIGURATION_FILENAME = "/config.xml";
+	private static final String CONFIGURATION_FILENAME = "/config/config.xml";
 
 	public static ConfigXML getInstance() {
 		return theInstance;
