@@ -116,7 +116,7 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 			}
 
-			Fee f1 = q1.addFee(new Fee(5F,"Atletico"));
+			//Fee f1 = q1.addFee(new Fee(5F,"Atletico"));
 
 			User u2 = new User("user", "user", false);
 			User u1 = new User("admin", "admin", true);
@@ -149,7 +149,7 @@ public class DataAccess {
 			db.persist(ev19);
 			db.persist(ev20);
 
-			db.persist(f1);
+			//db.persist(f1);
 
 			db.persist(u1);
 			db.persist(u2);
