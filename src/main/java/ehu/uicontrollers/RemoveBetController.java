@@ -72,39 +72,16 @@ public class RemoveBetController implements Controller{
             errorLbl.getStyleClass().setAll("lbl", "lbl-danger");
             errorLbl.setText("You must select a bet to delete");
         }else {
+            Float actualBalance = businessLogic.getCurrency(mainGUI.getUsername()) -
+                            removeTable.getSelectionModel().getSelectedItem().getBalance();
+            moneyLbl.setText(String.valueOf(actualBalance));
+            businessLogic.updateCurrency(actualBalance, mainGUI.getUsername());
             removeTable.getItems().remove(removeTable.getSelectionModel().getSelectedItem());
-            moneyLbl.setText(String.valueOf(removeTable.getSelectionModel().getSelectedItem().getBalance() + businessLogic.getCurrency(mainGUI.getUsername())));
-            businessLogic.updateCurrency(businessLogic.getCurrency(mainGUI.getUsername()) +
-                    removeTable.getSelectionModel().getSelectedItem().getBalance(), mainGUI.getUsername());
+
         }
     }
 
-    @FXML
-    void initialize() {
-        moneyLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
 
-        User actual = businessLogic.getCurrentUser();
-        removeTable.getItems().clear();
-
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
-        importedMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("money"));
-
-        data = FXCollections.observableArrayList();
-
-        Date now = new Date();
-
-        for(Movement m: actual.getMovements()){
-            if (m.getBalance() < 0 & m.getDate().after(now)){
-                data.add(m);
-            }
-        }
-
-        Collections.reverse(data);
-
-        removeTable.getItems().addAll(data);
-
-    }
     public RemoveBetController(BlFacade businessLogic){this.businessLogic =  businessLogic;}
 
     @Override
@@ -118,14 +95,14 @@ public class RemoveBetController implements Controller{
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
-        importedMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("money"));
+        importedMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
         data = FXCollections.observableArrayList();
 
         Date now = new Date();
 
         for(Movement m: actual.getMovements()){
-            if (m.getBalance() < 0 & m.getDate().after(now)){
+            if (m.getBalance() < 0){
                 data.add(m);
             }
         }
