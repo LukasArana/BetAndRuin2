@@ -189,6 +189,7 @@ public class DataAccess {
 		return q;
 	}
 
+
 	/**
 	 * This method retrieves from the database the events of a given date
 	 *
@@ -209,6 +210,20 @@ public class DataAccess {
 		}
 		System.out.println("Eventuak = " + res);
 		return res;
+	}
+
+	public Date getEventDate(Movement move){
+		System.out.println(">> DataAccess: getEventDate");
+		Date d = new Date();
+		TypedQuery<Event> event = db.createQuery("select ev from Event ev where ev.description=?1", Event.class);
+		event.setParameter(1, move.getEvent());
+		Event ev2 = event.getSingleResult();
+
+		d = ev2.getEventDate();
+
+		System.out.println("Datak = " + d);
+		return d;
+
 	}
 
 	/**
@@ -469,9 +484,5 @@ public class DataAccess {
 
 
 
-/*	public Vector<Movement> getMovements() {
-		Vector<Movement> res = new Vector<>();
-		return res;
-	}*/
 
 }

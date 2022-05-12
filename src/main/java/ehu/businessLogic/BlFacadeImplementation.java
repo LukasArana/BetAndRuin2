@@ -2,10 +2,7 @@ package ehu.businessLogic;
 
 import ehu.configuration.ConfigXML;
 import ehu.dataAccess.DataAccess;
-import ehu.domain.Event;
-import ehu.domain.Fee;
-import ehu.domain.Question;
-import ehu.domain.User;
+import ehu.domain.*;
 import ehu.exceptions.EventAlreadyExists;
 import ehu.exceptions.EventFinished;
 import ehu.exceptions.QuestionAlreadyExist;
@@ -124,6 +121,15 @@ public class BlFacadeImplementation implements BlFacade {
 		return dates;
 	}
 
+	@Override
+	public Date getEventDate(Movement move) {
+		dbManager.open(false);
+		Date d = dbManager.getEventDate(move);
+		dbManager.close();
+		return d;
+	}
+
+
 	public void close() {
 		dbManager.close();
 	}
@@ -219,5 +225,6 @@ public class BlFacadeImplementation implements BlFacade {
 	@Override
 	public void removeEvent(Event event) {dbManager.removeEvent(event);
 	}
+
 
 }

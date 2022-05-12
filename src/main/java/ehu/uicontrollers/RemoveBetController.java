@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import ehu.businessLogic.*;
 import ehu.domain.Movement;
@@ -18,6 +19,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import ehu.ui.MainGUI;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 public class RemoveBetController implements Controller{
 
@@ -102,7 +106,8 @@ public class RemoveBetController implements Controller{
         Date now = new Date();
 
         for(Movement m: actual.getMovements()){
-            if (m.getBalance() < 0){
+            Date betDate = businessLogic.getEventDate(m);
+            if (m.getBalance() < 0 & now.before(betDate)){
                 data.add(m);
             }
         }

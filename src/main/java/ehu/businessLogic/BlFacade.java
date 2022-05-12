@@ -1,10 +1,7 @@
 package ehu.businessLogic;
 
 
-import ehu.domain.Event;
-import ehu.domain.Fee;
-import ehu.domain.Question;
-import ehu.domain.User;
+import ehu.domain.*;
 import ehu.exceptions.EventAlreadyExists;
 import ehu.exceptions.EventFinished;
 import ehu.exceptions.QuestionAlreadyExist;
@@ -94,4 +91,6 @@ public interface BlFacade  {
     void setPassword(String user, String code);
 
 	void removeEvent(Event event);
+
+	Date getEventDate(Movement move);
 }
