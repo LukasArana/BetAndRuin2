@@ -122,7 +122,7 @@ public class RemoveBetController implements Controller{
             }
         }
 
-        //Collections.reverse(data);
+        Collections.reverse(data);
 
         removeTable.getItems().addAll(data);
 
