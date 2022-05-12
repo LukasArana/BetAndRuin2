@@ -25,7 +25,7 @@ import java.nio.file.Paths;
  */
 public class ConfigXML {
 
-	private static final String CONFIGURATION_FILENAME = "config/config.xml";
+	private static final String CONFIGURATION_FILENAME = "/config.xml";
 
 	public static ConfigXML getInstance() {
 		return theInstance;
@@ -171,10 +171,13 @@ public class ConfigXML {
 	 */
 	private File getFile(){
 		String userHome = System.getProperty("user.home");
-
+		System.out.println(userHome);
 		if (Files.exists(Paths.get(userHome + "/" + CONFIGURATION_FILENAME))) {
+			System.out.println("a");
+
 			return new File(userHome + "/" + CONFIGURATION_FILENAME);
 		} else {
+			System.out.println("b");
 			return new File(CONFIGURATION_FILENAME);
 		}
 	}
