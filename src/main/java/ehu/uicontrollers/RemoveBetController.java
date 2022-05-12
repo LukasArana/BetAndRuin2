@@ -1,11 +1,15 @@
 package ehu.uicontrollers;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 import ehu.businessLogic.*;
 import ehu.domain.Movement;
+import ehu.domain.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,12 +17,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import ehu.ui.MainGUI;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RemoveBetController implements Controller{
 
     private MainGUI mainGUI;
 
     private BlFacade businessLogic;
+
+    ObservableList<Movement> data;
 
     @FXML
     private ResourceBundle resources;
@@ -62,32 +69,70 @@ public class RemoveBetController implements Controller{
     @FXML
     void removeBet(ActionEvent event) {
         if (removeTable.getSelectionModel().getSelectedItem() == null){
-
+            errorLbl.getStyleClass().setAll("lbl", "lbl-danger");
             errorLbl.setText("You must select a bet to delete");
         }else {
             removeTable.getItems().remove(removeTable.getSelectionModel().getSelectedItem());
-
             moneyLbl.setText(String.valueOf(removeTable.getSelectionModel().getSelectedItem().getBalance() + businessLogic.getCurrency(mainGUI.getUsername())));
+            businessLogic.updateCurrency(businessLogic.getCurrency(mainGUI.getUsername()) +
+                    removeTable.getSelectionModel().getSelectedItem().getBalance(), mainGUI.getUsername());
         }
     }
 
     @FXML
     void initialize() {
-        assert backBtn != null : "fx:id=\"backBtn\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert currentBalanceLbl != null : "fx:id=\"currentBalanceLbl\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert dateColumn != null : "fx:id=\"dateColumn\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert eventColumn != null : "fx:id=\"eventColumn\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert importedMoneyColumn != null : "fx:id=\"importedMoneyColumn\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert moneyLbl != null : "fx:id=\"moneyLbl\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert removeBtn != null : "fx:id=\"removeBtn\" was not injected: check your FXML file 'RemoveBet.fxml'.";
-        assert removeTable != null : "fx:id=\"removeTable\" was not injected: check your FXML file 'RemoveBet.fxml'.";
+        moneyLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
+
+        User actual = businessLogic.getCurrentUser();
+        removeTable.getItems().clear();
+
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
+        importedMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("money"));
+
+        data = FXCollections.observableArrayList();
+
+        Date now = new Date();
+
+        for(Movement m: actual.getMovements()){
+            if (m.getBalance() < 0 & m.getDate().after(now)){
+                data.add(m);
+            }
+        }
+
+        Collections.reverse(data);
+
+        removeTable.getItems().addAll(data);
 
     }
-    public RemoveBetController(BlFacade businessLogic){
-        this.businessLogic =  businessLogic;
-    }
+    public RemoveBetController(BlFacade businessLogic){this.businessLogic =  businessLogic;}
+
     @Override
-    public void setMainApp(MainGUI mainGUI) {
-        this.mainGUI = mainGUI;
+    public void setMainApp(MainGUI mainGUI) {this.mainGUI = mainGUI;}
+
+    public void startTable(){
+        moneyLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString());
+
+        User actual = businessLogic.getCurrentUser();
+        removeTable.getItems().clear();
+
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
+        importedMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("money"));
+
+        data = FXCollections.observableArrayList();
+
+        Date now = new Date();
+
+        for(Movement m: actual.getMovements()){
+            if (m.getBalance() < 0 & m.getDate().after(now)){
+                data.add(m);
+            }
+        }
+
+        Collections.reverse(data);
+
+        removeTable.getItems().addAll(data);
+
     }
 }

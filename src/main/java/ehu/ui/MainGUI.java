@@ -200,7 +200,9 @@ public class MainGUI {
   }
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}
   public void showPublishResults(){setupScene(publishResultsWin.ui,"PublishResults",640,462);}
-  public void showRemoveBet(){setupScene(removeBet.ui, "RemoveBet", 670, 470);}
+  public void showRemoveBet(){
+    ((RemoveBetController)removeBet.c).startTable();
+    setupScene(removeBet.ui, "RemoveBet", 670, 470);}
   public void showRemoveEvent(){setupScene(removeEventWin.ui,"RemoveEvent", 590, 430);}
 
   private void setupScene(Parent ui, String title, int width, int height) {
