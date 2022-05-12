@@ -12,16 +12,17 @@
       <Button fx:id="browseQuestionsBtn" layoutX="87.0" layoutY="53.0" mnemonicParsing="false" onAction="#browseQuestions" prefHeight="26.0" prefWidth="181.0" text="%BrowseQuestions" />
       <Button fx:id="createQuestionBtn" layoutX="87.0" layoutY="94.0" mnemonicParsing="false" onAction="#createQuestion" prefHeight="26.0" prefWidth="181.0" text="%CreateQuestion" />
       <Button fx:id="setFeesBtn" layoutX="87.0" layoutY="131.0" mnemonicParsing="false" onAction="#setFeesClick" prefHeight="26.0" prefWidth="181.0" text="%Set Fees" />
-      <RadioButton fx:id="euskaraRB" layoutX="37.0" layoutY="279.0" mnemonicParsing="false" onAction="#changeLanguage" text="Euskara">
+      <RadioButton fx:id="euskaraRB" layoutX="52.0" layoutY="285.0" mnemonicParsing="false" onAction="#changeLanguage" text="Euskara">
          <toggleGroup>
             <ToggleGroup fx:id="g1" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="castellanoRB" layoutX="121.0" layoutY="279.0" mnemonicParsing="false" onAction="#changeLanguage" text="Castellano" toggleGroup="$g1" />
-      <RadioButton fx:id="englishRB" layoutX="228.0" layoutY="279.0" mnemonicParsing="false" onAction="#changeLanguage" text="English" toggleGroup="$g1" />
+      <RadioButton fx:id="castellanoRB" layoutX="136.0" layoutY="285.0" mnemonicParsing="false" onAction="#changeLanguage" text="Castellano" toggleGroup="$g1" />
+      <RadioButton fx:id="englishRB" layoutX="243.0" layoutY="285.0" mnemonicParsing="false" onAction="#changeLanguage" text="English" toggleGroup="$g1" />
       <Button fx:id="createEventBtn" layoutX="87.0" layoutY="171.0" mnemonicParsing="false" onAction="#createEvent" prefHeight="26.0" prefWidth="181.0" text="%CreateEvent" />
-      <Label fx:id="answerLbl" layoutX="87.0" layoutY="303.0" prefHeight="18.0" prefWidth="182.0" />
-      <Button fx:id="logOutButton" layoutX="240.0" layoutY="16.0" mnemonicParsing="false" onAction="#logOut" text="Log out" />
+      <Label fx:id="answerLbl" layoutX="87.0" layoutY="309.0" prefHeight="18.0" prefWidth="182.0" />
+      <Button fx:id="logOutButton" layoutX="240.0" layoutY="16.0" mnemonicParsing="false" onAction="#logOut" text="%Logout" />
       <Button fx:id="removeEventBt" layoutX="87.0" layoutY="208.0" mnemonicParsing="false" onAction="#removeEvent" prefHeight="25.0" prefWidth="181.0" text="%RemoveEvent" />
+      <Button fx:id="publishBtn" layoutX="86.0" layoutY="246.0" mnemonicParsing="false" onAction="#publishResults" prefHeight="26.0" prefWidth="182.0" text="%PublishResults" />
    </children>
 </AnchorPane>

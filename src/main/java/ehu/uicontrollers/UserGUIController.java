@@ -77,6 +77,8 @@ public class UserGUIController implements Controller {
 
     @FXML
     void logoutPressed(ActionEvent event) {
+        answerLbl.setText("");
+        answerLbl.getStyleClass().clear();
         mainGUI.showLogin();
     }
 

@@ -45,13 +45,15 @@ public class ChangePasswordController implements Controller{
     void changePasswordPressed(ActionEvent event) {
         if (Integer.parseInt(codeField.getText()) == this.code){
             if (newPassordField.getText().equals(repetedPasswordField.getText())){
-
                 businessLogic.setPassword(user, newPassordField.getText());
+                answrLbl.setText(resources.getString("PassChangeSuccess"));
             }else{
-                answrLbl.setText("ERROR: PASSWORDS ARE NOT EQUAL");
+                answrLbl.setText(resources.getString("SamePass"));
+                answrLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
         } else{
-            answrLbl.setText("ERROR: CODE IS NOT EQUAL");
+            answrLbl.setText(resources.getString("WrongCode"));
+            answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
     }
     @FXML

@@ -171,14 +171,14 @@ public class MainGUI {
   public void showBrowseQuestions() {
     setupScene(browseQuestionsLag.ui, "BrowseQuestions", 1000, 500);
   }
-  public void showLostPassword(){setupScene(lostPassword.ui, "LostPassword",355,240);}
+  public void showLostPassword(){setupScene(lostPassword.ui, "LostPassword",355,210);}
 
   public void showCreateQuestion() {
     setupScene(createQuestionLag.ui, "CreateQuestion", 550, 400);
   }
 
   public void showLogin(){
-    setupScene(loginWin.ui,"Login",355,240);
+    setupScene(loginWin.ui,"Login",387,240);
   }
 
   public void showRegister(){setupScene(registerWin.ui,"Register",466,303);}
@@ -195,7 +195,7 @@ public class MainGUI {
     ChangePasswordController cont = ((ChangePasswordController) changePassword.c);
     cont.setCode(code);
     cont.setUser(usr);
-    setupScene(changePassword.ui, "ChangePassword", 350,310);
+    setupScene(changePassword.ui, "ChangePassword", 350,215);
 
   }
   public void showDeposit(){setupScene(depositMoney.ui, "DepositMoney", 427, 265);}

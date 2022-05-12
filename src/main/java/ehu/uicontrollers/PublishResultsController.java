@@ -83,12 +83,13 @@ public class PublishResultsController implements Controller {
     @FXML
     void publish(ActionEvent event) {
         messageLbl.getStyleClass().clear();
-
+        /*
         if(datePicker.getValue().isAfter(LocalDate.now())){
             messageLbl.setText(resources.getString("eventNotFinished"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
-        else if(tblEvents.getSelectionModel().getSelectedItem() == null){
+         */
+        if(tblEvents.getSelectionModel().getSelectedItem() == null){
             messageLbl.setText(resources.getString("selectEvent"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }

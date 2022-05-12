@@ -377,19 +377,14 @@ public class DataAccess {
 		System.out.println("New event has been registered in the database");
 		return u;
 	}
-	public void updateCurrency(float deposit, String username){
+	public void updateCurrency(Float deposit, String username){
 		db.getTransaction().begin();
 
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
 		q1.setParameter(1, username);
-		List<User> userList = q1.getResultList(); //user.isEmpty == false
+		List<User> userList = q1.getResultList();
 		User current = userList.get(0);
 		changeMoney(current,deposit,"Deposit money");
-		//current.updateAvailableMoney(deposit);
-		System.out.println(current.getAvailableMoney());
-		//current.addMovement(deposit);
-		//current.addDate(new Date());
-		//current.addEvent("Deposit money");
 		db.persist(current);
 		db.getTransaction().commit();
 
@@ -421,11 +416,7 @@ public class DataAccess {
 		List<User> userList = q1.getResultList();
 
 		User current = userList.get(0);
-		//current.updateAvailableMoney(-stake);
-		//current.addDate(new Date());
-		//current.addEvent(e.getDescription());
-		//current.addMovement(-stake);
-		changeMoney(current,-stake,e.getDescription());
+		changeMoney(current,-stake,"Bet: " + e.getDescription());
 		current.addBet(b);
 		db.persist(b);
 		db.getTransaction().commit();
@@ -453,12 +444,11 @@ public class DataAccess {
 
 	}
 
-	public void changeMoney(User u, float amount,String eventDescription){
+	public void changeMoney(User u, Float amount,String eventDescription){
 		u.updateAvailableMoney(amount);
-		u.addDate(new Date());
-		u.addEvent(eventDescription);
-		u.addMovement(amount);
+		u.addMovement(new Movement(new Date(),eventDescription,amount));
 	}
+
 	public String getEmail(String username){
 		return this.getCurrentUser(username).getEmail();
 	}
@@ -476,6 +466,9 @@ public class DataAccess {
 		db.remove(event);
 		db.getTransaction().commit();
 	}
+
+
+
 /*	public Vector<Movement> getMovements() {
 		Vector<Movement> res = new Vector<>();
 		return res;

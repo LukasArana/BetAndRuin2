@@ -28,12 +28,23 @@ public class LostPasswordController implements Controller {
     @FXML
     private PasswordField emailField;
 
+    @FXML
+    private Button backBtn;
 
     @FXML
     private TextField usrField;
 
     public LostPasswordController(BlFacade businessLogic) {
         this.businessLogic = businessLogic;
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+        emailField.clear();
+        usrField.clear();
+        answrLbl.setText("");
+        answrLbl.getStyleClass().clear();
+        mainGUI.showLogin();
     }
 
     @FXML
@@ -49,10 +60,12 @@ public class LostPasswordController implements Controller {
 
                 mainGUI.showChangePassword(user, code);
             } else {
-                answrLbl.setText("The user is not connected to that email.");
+                answrLbl.setText(resources.getString("UsrNotConnected"));
+                answrLbl.getStyleClass().setAll("lbl","lbl-danger");
             }
         }else{
-            answrLbl.setText("The user is not connected to that email.");
+            answrLbl.setText(resources.getString("UsrNotConnected"));
+            answrLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
     }
 

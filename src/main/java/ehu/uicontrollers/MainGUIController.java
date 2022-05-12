@@ -75,6 +75,8 @@ public class MainGUIController implements Controller {
     }
     @FXML
     void logOut(ActionEvent event){
+        answerLbl.setText("");
+        answerLbl.getStyleClass().clear();
         mainGUI.showLogin();
     }
 

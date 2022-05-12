@@ -15,6 +15,6 @@
       <Button fx:id="loginBtn" layoutX="272.0" layoutY="141.0" mnemonicParsing="false" onAction="#loginAction" text="%LogIn" />
       <Button fx:id="registerBtn" layoutX="156.0" layoutY="141.0" mnemonicParsing="false" onAction="#registerAction" text="%Register" />
       <Label fx:id="answrLbl" layoutX="41.0" layoutY="176.0" prefHeight="18.0" prefWidth="278.0" textAlignment="CENTER" />
-      <Button fx:id="LostPassword" layoutX="14.0" layoutY="141.0" mnemonicParsing="false" onAction="#lostPasswordPressed" text="Lost password" />
+      <Button fx:id="LostPassword" layoutX="14.0" layoutY="141.0" mnemonicParsing="false" onAction="#lostPasswordPressed" text="%LostPassword" />
    </children>
 </AnchorPane>

@@ -1,10 +1,16 @@
 package ehu.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.Date;
-
+@Entity
 public class Movement {
+    @Id
     private Date date;
+    @Id
     private String event;
     private Float balance;
 

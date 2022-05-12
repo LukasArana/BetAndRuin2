@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ehu.ui.MainGUI;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -74,10 +75,12 @@ public class ShowMovementsController implements Controller {
         Date now = new Date();
 
         data = FXCollections.observableArrayList();
-
-        for (int i=actual.getMoneyMovements().size()-1; i >=0 ; i--){
-            data.add(new Movement(actual.getDateList().get(i), actual.getEventList().get(i), actual.getMoneyMovements().get(i)));
+        //Collections.reverse(data);
+        for (Movement m: actual.getMovements()){
+            data.add(m);
         }
+
+        Collections.reverse(data);
 
       /*  data.addAll(
                 new Movement(now, "Barça-Athletic", 15f),
