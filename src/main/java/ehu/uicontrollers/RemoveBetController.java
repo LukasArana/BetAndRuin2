@@ -18,7 +18,7 @@ public class RemoveBetController implements Controller{
 
     private MainGUI mainGUI;
 
-    private BlFacadeImplementation businessLogic;
+    private BlFacade businessLogic;
 
     @FXML
     private ResourceBundle resources;
@@ -83,7 +83,9 @@ public class RemoveBetController implements Controller{
         assert removeTable != null : "fx:id=\"removeTable\" was not injected: check your FXML file 'RemoveBet.fxml'.";
 
     }
-
+    public RemoveBetController(BlFacade businessLogic){
+        this.businessLogic =  businessLogic;
+    }
     @Override
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;

@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -59,8 +60,14 @@ public class MainGUI {
     Window window = new Window();
     FXMLLoader loader = new FXMLLoader(MainGUI.class.getResource(fxmlfile), ResourceBundle.getBundle("Etiquetas", Locale.getDefault()));
     loader.setControllerFactory(controllerClass -> {
+      try{
+        System.out.println(controllerClass.getConstructor(BlFacade.class));
+        return controllerClass.getConstructor(BlFacade.class).newInstance(businessLogic);
+      } catch (Exception e){
+        throw new RuntimeException(e);
+      }
 
-      if (controllerClass == BrowseQuestionsController.class) {
+     /* if (controllerClass == BrowseQuestionsController.class) {
         return new BrowseQuestionsController(businessLogic);
       }
       else if (controllerClass == CreateQuestionController.class) {
@@ -110,7 +117,7 @@ public class MainGUI {
           throw new RuntimeException(exc); // fatal, just bail...
         }
       }
-
+*/
 
     });
     window.ui = loader.load();

@@ -87,6 +87,7 @@ public class CreateEventsController implements Controller {
         this.mainGUI = mainGUI;
     }
 
+
     @FXML
     void initialize() {
 

@@ -1,5 +1,6 @@
 package ehu.uicontrollers;
 
+import ehu.businessLogic.BlFacade;
 import ehu.configuration.ConfigXML;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -169,5 +170,10 @@ public class MainGUIController implements Controller {
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
     }
+    public Controller newInstance(BlFacade businessLogic){
+        return this;
+    }
+    public MainGUIController(BlFacade businessLogic){
 
+    }
 }

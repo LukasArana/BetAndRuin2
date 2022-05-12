@@ -21,28 +21,23 @@ import java.util.Vector;
 //@WebService(endpointInterface = "businessLogic.BlFacade")
 public class BlFacadeImplementation implements BlFacade {
 	String username;
+	private static BlFacadeImplementation bl = new BlFacadeImplementation();
 
 	DataAccess dbManager;
 	ConfigXML config = ConfigXML.getInstance();
 
-	public BlFacadeImplementation()  {		
+	private BlFacadeImplementation()  {
 		System.out.println("Creating BlFacadeImplementation instance");
 		boolean initialize = config.getDataBaseOpenMode().equals("initialize");
 		dbManager = new DataAccess(initialize);
 		if (initialize)
 			dbManager.initializeDB();
-		//dbManager.close();
+		dbManager.close();
+	}
+	public static BlFacadeImplementation getInstance(){
+		return bl;
 	}
 
-	public BlFacadeImplementation(DataAccess dam)  {
-		System.out.println("Creating BlFacadeImplementation instance with DataAccess parameter");
-		if (config.getDataBaseOpenMode().equals("initialize")) {
-			dam.open(true);
-			dam.initializeDB();
-			dam.close();
-		}
-		dbManager = dam;		
-	}
 	
 	public boolean feeExists(String f, String s) {
 		return dbManager.feeExists(f,s);

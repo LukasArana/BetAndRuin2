@@ -21,7 +21,7 @@ public class ApplicationLauncher {
     try {
 
      // if (config.isBusinessLogicLocal())
-      businessLogic = new BlFacadeImplementation();
+      businessLogic = BlFacadeImplementation.getInstance();
 
      // else {
 

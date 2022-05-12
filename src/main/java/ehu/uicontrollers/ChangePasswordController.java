@@ -67,6 +67,8 @@ public class ChangePasswordController implements Controller{
     public void setMainApp(MainGUI mainGUI) {
         this.mainGUI = mainGUI;
     }
+
+
     public ChangePasswordController(BlFacade businessLogic){
         this.businessLogic = businessLogic;
     }

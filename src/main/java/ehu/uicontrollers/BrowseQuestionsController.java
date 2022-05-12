@@ -168,4 +168,6 @@ public class BrowseQuestionsController implements Controller, Initializable {
     this.mainGUI = mainGUI;
   }
 
+
+
 }
