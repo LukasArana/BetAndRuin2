@@ -96,7 +96,7 @@ public class RemoveEventController implements Controller {
         VBox dialogVbox = new VBox(10);
         dialogVbox.getChildren().addAll(label1,bt1,bt2);
         dialogVbox.setAlignment(Pos.CENTER);
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        Scene dialogScene = new Scene(dialogVbox, 250, 125);
         dialog.setScene(dialogScene);
         dialog.show();
     }
