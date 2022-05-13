@@ -18,7 +18,7 @@ public class Question implements Serializable {
 
 	@Id 
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer questionNumber;
 
 	private String question; 
@@ -28,13 +28,15 @@ public class Question implements Serializable {
 	private ArrayList<Fee> feeList = new ArrayList<>();
 
 	//@XmlIDREF
+	@OneToMany(cascade = CascadeType.PERSIST)
 	private Event event;
 	
 	public Fee addFee(Fee f) {
 		feeList.add(f);
         return f;
     }
-	
+
+	@OneToMany(cascade = CascadeType.PERSIST)
 	public ArrayList<Fee> getFeeList(){
 		return this.feeList;
 	}
@@ -108,7 +110,7 @@ public class Question implements Serializable {
 	/**
 	 * Gets the minimum amount allowed for the bet
 	 * 
-	 * @param  minimum amount to be set
+	 * @param  betMinimum amount to be set
 	 */
 	public void setBetMinimum(float betMinimum) {
 		this.betMinimum = betMinimum;
@@ -127,7 +129,7 @@ public class Question implements Serializable {
 	/**
 	 * Sets the correct result of the  query
 	 * 
-	 * @param correct result of the query
+	 * @param result result of the query
 	 */
 	public void setResult(String result) {
 		this.result = result;
@@ -139,7 +141,7 @@ public class Question implements Serializable {
 	 * @return the associated event
 	 */
 	public Event getEvent() {
-		return event;
+		return this.event;
 	}
 
 	/**

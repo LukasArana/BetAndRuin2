@@ -99,9 +99,9 @@ public class DataAccess {
 				q6 = ev17.addQuestion("¿Habrá goles en la primera parte?", 2);
 			} else if (Locale.getDefault().equals(new Locale("en"))) {
 				q1 = ev1.addQuestion("Who will win the match?", 1);
-				q1.addFee(new Fee((float) 1.9, "Atletico"));
-				q1.addFee(new Fee((float) 3.5, "Draw"));
-				q1.addFee(new Fee((float) 3.0, "Athletic"));
+				q1.addFee(new Fee((float) 1.9, "Atletico", q1));
+				q1.addFee(new Fee((float) 3.5, "Draw", q1));
+				q1.addFee(new Fee((float) 3.0, "Athletic", q1));
 				q2 = ev1.addQuestion("Who will score first?", 2);
 				q3 = ev11.addQuestion("Who will win the match?", 1);
 				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);
@@ -350,10 +350,10 @@ public class DataAccess {
 		return (userList.isEmpty() == false);
 	}
 
-	public Fee setFee(String result, Float fee, String quest, Event ev) {
-		Fee f = new Fee(fee, result);
+	public Fee setFee(String result, Float fee, Question quest, Event ev) {
+		Fee f = new Fee(fee, result, quest);
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
-		q1.setParameter(1, quest);
+		q1.setParameter(1, quest.getQuestion());
 		List<Question> questList = q1.getResultList();
 
 		Question q = questList.get(0);
@@ -484,6 +484,9 @@ public class DataAccess {
 	}
 
 
-
-
+	public void removeBet(Movement selected) {
+		db.getTransaction().begin();
+		db.remove(selected);
+		db.getTransaction().commit();
+	}
 }

@@ -55,7 +55,7 @@ public class BlFacadeImplementation implements BlFacade {
 		return dbManager.getCurrency(username);
 	}
 
-	public Fee setFee(String result, Float fee, String quest, Event ev) {
+	public Fee setFee(String result, Float fee, Question quest, Event ev) {
 		return dbManager.setFee(result,fee,quest,ev);
 	}
 
@@ -212,6 +212,11 @@ public class BlFacadeImplementation implements BlFacade {
 	@Override
 	public String getEmail(String username) {
 		return dbManager.getEmail(username);
+	}
+
+	@Override
+	public void removeBet(Movement selected) {
+		dbManager.removeBet(selected);
 	}
 
 

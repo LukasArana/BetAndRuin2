@@ -69,7 +69,7 @@ public interface BlFacade  {
 	public Event createEvent(String description,Date date) throws EventAlreadyExists;
 	
 	//@WebMethod
-	public Fee setFee(String result, Float fee, String quest, Event ev);
+	public Fee setFee(String result, Float fee, Question quest, Event ev);
 	
 	//@WebMethod
 	public boolean feeExists(String f, String s);
@@ -97,6 +97,8 @@ public interface BlFacade  {
 	Vector<Question> getQuestions(Event event);
 
 	ArrayList<Fee> getFeeList(Question q);
+
+	void removeBet(Movement selected);
 
 	//Date getEventDate(Movement move);
 }

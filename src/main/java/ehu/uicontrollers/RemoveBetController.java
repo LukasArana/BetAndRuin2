@@ -1,22 +1,19 @@
 package ehu.uicontrollers;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
 import ehu.businessLogic.*;
-import ehu.domain.Movement;
-import ehu.domain.User;
+import ehu.domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import ehu.ui.MainGUI;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -29,13 +26,15 @@ public class RemoveBetController implements Controller{
 
     private BlFacade businessLogic;
 
-    ObservableList<Movement> data;
+    ObservableList<Event> eventData;
+    ObservableList<Bet> betData;
+    ObservableList<Question> questionData;
+
+
+    private DatePicker datePicker;
 
     @FXML
     private ResourceBundle resources;
-
-    @FXML
-    private Label errorLbl;
 
     @FXML
     private URL location;
@@ -44,37 +43,58 @@ public class RemoveBetController implements Controller{
     private Button backBtn;
 
     @FXML
+    private TableColumn<Bet, Float> currencyColumn;
+
+    @FXML
     private Label currentBalanceLbl;
 
     @FXML
-    private TableColumn<Movement, Date> dateColumn;
+    private Label errorLbl;
 
     @FXML
-    private TableColumn<Movement, String> eventColumn;
+    private TableColumn<Event, String> eventColumn;
 
     @FXML
-    private TableColumn<Movement, Float> importedMoneyColumn;
+    private TableColumn<Event, Integer> idColumn;
 
     @FXML
     private Label moneyLbl;
 
     @FXML
+    private TableColumn<Question, String> questionColumn;
+
+    @FXML
+    private TableColumn<Question, Integer> questionColumnID;
+
+    @FXML
+    private TableView<Question> questionTable;
+
+    @FXML
     private Button removeBtn;
 
     @FXML
-    private TableView<Movement> removeTable;
+    private TableView<Event> eventTable;
+
+    @FXML
+    private TableColumn<Bet, String> resultColumn;
+
+    @FXML
+    private TableView<Bet> resultTable;
+
 
     @FXML
     void goBack(ActionEvent event) {
         mainGUI.showMain();
-        removeTable.getItems().clear();
+        eventTable.getItems().clear();
+        questionTable.getItems().clear();
+        resultTable.getItems().clear();
     }
 
     @FXML
     void removeBet(ActionEvent event) {
-
+/*
         User actual = businessLogic.getCurrentUser();
-        Movement selected = removeTable.getSelectionModel().getSelectedItem();
+        Bet selected = removeTable.getSelectionModel().getSelectedItem();
 
         if (selected == null){
             errorLbl.getStyleClass().setAll("lbl", "lbl-danger");
@@ -83,16 +103,14 @@ public class RemoveBetController implements Controller{
             Float actualBalance = businessLogic.getCurrency(actual.getUsername()) - selected.getBalance();
             moneyLbl.setText(String.valueOf(actualBalance));
             businessLogic.updateCurrency(actualBalance - actual.getAvailableMoney(), actual.getUsername());
-            removeTable.getItems().remove(removeTable.getSelectionModel().getSelectedItem());
-            int i = 0;
-            while (actual.getMovements().get(i) != selected){
-                i++;
-            }
+            removeTable.getItems().remove(selected);
+            int i = removeTable.getSelectionModel().getSelectedIndex();
             actual.getMovements().remove(i);
+            businessLogic.removeBet(selected);
             errorLbl.setText("Bet removed");
             errorLbl.getStyleClass().setAll("lbl", "lbl-success");
 
-        }
+        }*/
     }
 
 
@@ -105,26 +123,36 @@ public class RemoveBetController implements Controller{
 
         User actual = businessLogic.getCurrentUser();
         moneyLbl.setText(String.valueOf(businessLogic.getCurrency(actual.getUsername())));
-        removeTable.getItems().clear();
+        //eventTable.getItems().clear();
+        //questionTable.getItems().clear();
+        //resultTable.getItems().clear();
 
-
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("eventID"));
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
-        importedMoneyColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
+        questionColumnID.setCellValueFactory(new PropertyValueFactory<>("questionID"));
+        questionColumn.setCellValueFactory(new PropertyValueFactory<>("question"));
+        resultColumn.setCellValueFactory(new PropertyValueFactory<>("result"));
+        currencyColumn.setCellValueFactory(new PropertyValueFactory<>("balance"));
 
-        data = FXCollections.observableArrayList();
+        betData = FXCollections.observableArrayList();
+        eventData = FXCollections.observableArrayList();
+        questionData = FXCollections.observableArrayList();
 
-        Date now = new Date();
-
-        for(Movement m: actual.getMovements()){
-            if (m.getBalance() < 0 & m.getDate().before(now)){
-                data.add(m);
+        Fee f;
+        for(Bet b: actual.getBetList()){
+            betData.add(b);
+            f = b.getFee();
+            Question q = f.getQuestion();
+            if (q!=null) {
+                questionData.add(q);
+                eventData.add(q.getEvent());
             }
         }
 
-        Collections.reverse(data);
 
-        removeTable.getItems().addAll(data);
+        //eventTable.getItems().addAll(eventData);
+        //questionTable.getItems().addAll(questionData);
+        resultTable.getItems().addAll(betData);
 
     }
 }

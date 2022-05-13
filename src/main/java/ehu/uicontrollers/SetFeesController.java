@@ -123,7 +123,7 @@ public class SetFeesController implements Controller {
             //}
             else{
                 Event selectedEvent = eventTable.getSelectionModel().getSelectedItem();
-                String question = questionTable.getSelectionModel().getSelectedItem().getQuestion();
+                Question question = questionTable.getSelectionModel().getSelectedItem();
                 businessLogic.setFee(resultField.getText(), Float.parseFloat(feeField.getText())
                         , question, selectedEvent);
                 answerLbl.getStyleClass().clear();
