@@ -7,9 +7,7 @@ import ehu.exceptions.EventAlreadyExists;
 import ehu.exceptions.EventFinished;
 import ehu.exceptions.QuestionAlreadyExist;
 
-import java.util.Date;
-import java.util.ResourceBundle;
-import java.util.Vector;
+import java.util.*;
 
 
 /**
@@ -226,5 +224,14 @@ public class BlFacadeImplementation implements BlFacade {
 	public void removeEvent(Event event) {dbManager.removeEvent(event);
 	}
 
+	@Override
+	public Vector<Question> getQuestions(Event e){
+		return e.getQuestions();
+	}
+
+	@Override
+	public ArrayList<Fee> getFeeList(Question q){
+		return q.getFeeList();
+	}
 
 }

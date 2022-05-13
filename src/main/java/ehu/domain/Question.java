@@ -24,7 +24,6 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private String result;  
-	
 
 	private ArrayList<Fee> feeList = new ArrayList<>();
 

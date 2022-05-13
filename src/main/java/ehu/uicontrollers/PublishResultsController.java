@@ -83,13 +83,12 @@ public class PublishResultsController implements Controller {
     @FXML
     void publish(ActionEvent event) {
         messageLbl.getStyleClass().clear();
-        /*
+
         if(datePicker.getValue().isAfter(LocalDate.now())){
             messageLbl.setText(resources.getString("eventNotFinished"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
-         */
-        if(tblEvents.getSelectionModel().getSelectedItem() == null){
+        else if(tblEvents.getSelectionModel().getSelectedItem() == null){
             messageLbl.setText(resources.getString("selectEvent"));
             messageLbl.getStyleClass().setAll("lbl","lbl-danger");
         }
@@ -187,7 +186,7 @@ public class PublishResultsController implements Controller {
         tblEvents.getSelectionModel().selectedItemProperty().addListener((obs, oldselection, newselection) -> {
             if(newselection != null){
                 tblQuestions.getItems().clear();
-                Vector<Question> questions = tblEvents.getSelectionModel().getSelectedItem().getQuestions();
+                Vector<Question> questions = businessLogic.getQuestions(tblEvents.getSelectionModel().getSelectedItem());
                 for(Question q:questions){
                     if(q.getResult() == null){
                         tblQuestions.getItems().add(q);
@@ -205,7 +204,7 @@ public class PublishResultsController implements Controller {
             if(newselection != null){
                 resultCombo.getItems().clear();
                 Fees = FXCollections.observableArrayList(new ArrayList<>());
-                Fees.setAll(tblQuestions.getSelectionModel().getSelectedItem().getFeeList());
+                Fees.setAll(businessLogic.getFeeList(tblQuestions.getSelectionModel().getSelectedItem()));
                 //Fees = tblQuestions.getSelectionModel().getSelectedItem().getFeeList();
                 resultCombo.setItems(Fees);
                 if(resultCombo.getItems().size() == 0){

@@ -24,6 +24,8 @@ public class Event implements Serializable {
 	@OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Vector<Question> questions = new Vector<Question>();
 
+	private String result;
+
 	public Vector<Question> getQuestions() {
 		return questions;
 	}

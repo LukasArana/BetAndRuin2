@@ -6,7 +6,9 @@ import ehu.exceptions.EventAlreadyExists;
 import ehu.exceptions.EventFinished;
 import ehu.exceptions.QuestionAlreadyExist;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 /**
@@ -91,6 +93,10 @@ public interface BlFacade  {
     void setPassword(String user, String code);
 
 	void removeEvent(Event event);
+
+	Vector<Question> getQuestions(Event event);
+
+	ArrayList<Fee> getFeeList(Question q);
 
 	//Date getEventDate(Movement move);
 }
