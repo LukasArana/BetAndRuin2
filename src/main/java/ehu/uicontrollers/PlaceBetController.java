@@ -82,17 +82,17 @@ public class PlaceBetController implements Controller {
 
     @FXML
     void closeClick(ActionEvent event) {
-        mainGUI.showMain();
+        datepicker.getEditor().clear();
         feeComboBox.getItems().clear();
         tblEvents.getItems().clear();
         tblQuestions.getItems().clear();
         stakeField.clear();
         messageLbl.setText("");
         messageLbl.getStyleClass().clear();
-        balanceLbl.getStyleClass().clear();
-        balanceLbl.setText("");
         outputLbl.getStyleClass().clear();
         outputLbl.setText("");
+        winningsLb.setText("0.0");
+        mainGUI.showMain();
     }
 
     @FXML
@@ -161,6 +161,25 @@ public class PlaceBetController implements Controller {
     @FXML
     void initialize(){
         betBt.setDisable(true);
+        // only show the text of the event in the combobox (without the id)
+        Callback<ListView<Event>, ListCell<Event>> factory = lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Event item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getDescription());
+            }
+        };
+
+
+
+
+
+        setEventsPrePost(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue());
+
+
+        // get a reference to datepicker inner content
+        // attach a listener to the  << and >> buttons
+        // mark events for the (prev, current, next) month and year shown
         datepicker.setOnMouseClicked(e -> {
             balanceLbl.setText(businessLogic.getCurrency(mainGUI.getUsername()).toString()+"€");
             DatePickerSkin skin = (DatePickerSkin) datepicker.getSkin();
