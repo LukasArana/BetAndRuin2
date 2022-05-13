@@ -117,7 +117,7 @@ public class RemoveBetController implements Controller{
         Date now = new Date();
 
         for(Movement m: actual.getMovements()){
-            if (m.getBalance() < 0){
+            if (m.getBalance() < 0 & m.getDate().before(now)){
                 data.add(m);
             }
         }
