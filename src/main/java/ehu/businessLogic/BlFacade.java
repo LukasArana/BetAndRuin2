@@ -8,7 +8,6 @@ import ehu.exceptions.QuestionAlreadyExist;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -100,5 +99,9 @@ public interface BlFacade  {
 
 	void removeBet(Movement selected);
 
-	//Date getEventDate(Movement move);
+    void removeBet(Bet selectedItem1, String currentUser);
+
+	ArrayList<Bet> getBetsForQuestion(Question selectedItem, User currentUser, Fee item);
+
+    //Date getEventDate(Movement move);
 }

@@ -239,4 +239,22 @@ public class BlFacadeImplementation implements BlFacade {
 		return q.getFeeList();
 	}
 
+	@Override
+	public void removeBet(Bet b, String currentUser) {
+		dbManager.removeBet(b,currentUser);
+	}
+
+	@Override
+	public ArrayList<Bet> getBetsForQuestion(Question q, User currentUser, Fee f) {
+		ArrayList<Bet> a = new ArrayList<>();
+		for(Bet b: currentUser.getBetList()){
+			if(!Objects.isNull(b.getFee())){
+				if(b.getFee().equals(f)) {
+					a.add(b);
+				}
+			}
+		}
+		return a;
+	}
+
 }

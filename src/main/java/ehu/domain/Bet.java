@@ -29,6 +29,10 @@ public class Bet {
         return this.stake;
     }
 
+    @Override
+    public String toString(){
+        return "Stake: " + this.stake;
+    }
 
     /**
     public Bet(Fee Fee, Float stake, String username, Question betEvent) {

@@ -442,7 +442,6 @@ public class DataAccess {
 		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
 		q1.setParameter(1,username);
 		List<User> userList = q1.getResultList();
-
 		User current = userList.get(0);
 		changeMoney(current,-stake,"Bet: " + e.getDescription());
 		current.addBet(b);
@@ -509,8 +508,17 @@ public class DataAccess {
 		db.remove(event);
 		db.getTransaction().commit();
 	}
-
-
+	public void removeBet(Bet b, String currentUser) {
+		db.getTransaction().begin();
+		TypedQuery<User> q1 = db.createQuery("SELECT u FROM User u WHERE u.username = ?1", User.class);
+		q1.setParameter(1,currentUser);
+		List<User> userList = q1.getResultList();
+		User current = userList.get(0);
+		current.getBetList().remove(b);
+		changeMoney(current,b.getStake(),"Bet removed");
+		db.persist(current);
+		db.getTransaction().commit();
+	}
 	public void removeBet(Movement selected) {
 		db.getTransaction().begin();
 		db.remove(selected);
