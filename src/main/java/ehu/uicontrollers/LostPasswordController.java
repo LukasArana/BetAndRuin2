@@ -52,17 +52,24 @@ public class LostPasswordController implements Controller {
         String email = emailField.getText();
         String user = usrField.getText();
         if (!businessLogic.usernameIsFree(user)) {
-            if (businessLogic.getEmail(user).equals(email)) {
-                sender = new SendMail();
-                Random rand = new Random();
-                int code = rand.nextInt(999999); //Make it simple :)
-                sender.sendMail(email, user, code);
+            if (user.equals("admin") ) {
+                answrLbl.setText("Why do you want to change admin password :)");
+            } else if(user.equals("user")){
+                answrLbl.setText("Do not try to change default user password jajaja");
+            } else{
+                if (businessLogic.getEmail(user).equals(email)) {
+                    sender = new SendMail();
+                    Random rand = new Random();
+                    int code = rand.nextInt(999999); //Make it simple :)
+                    sender.sendMail(email, user, code);
 
-                mainGUI.showChangePassword(user, code);
-            } else {
-                answrLbl.setText(resources.getString("UsrNotConnected"));
-                answrLbl.getStyleClass().setAll("lbl","lbl-danger");
+                    mainGUI.showChangePassword(user, code);
+                } else {
+                    answrLbl.setText(resources.getString("UsrNotConnected"));
+                    answrLbl.getStyleClass().setAll("lbl","lbl-danger");
+                }
             }
+
         }else{
             answrLbl.setText(resources.getString("UsrNotConnected"));
             answrLbl.getStyleClass().setAll("lbl","lbl-danger");
