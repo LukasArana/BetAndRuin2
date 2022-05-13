@@ -24,11 +24,11 @@ public class Question implements Serializable {
 	private String question; 
 	private float betMinimum;
 	private String result;  
-
+	@OneToMany(cascade = CascadeType.REMOVE)
 	private ArrayList<Fee> feeList = new ArrayList<>();
 
 	//@XmlIDREF
-	@OneToMany(cascade = CascadeType.PERSIST)
+	//@OneToMany(cascade = CascadeType.PERSIST)
 	private Event event;
 	
 	public Fee addFee(Fee f) {
@@ -36,7 +36,6 @@ public class Question implements Serializable {
         return f;
     }
 
-	@OneToMany(cascade = CascadeType.PERSIST)
 	public ArrayList<Fee> getFeeList(){
 		return this.feeList;
 	}

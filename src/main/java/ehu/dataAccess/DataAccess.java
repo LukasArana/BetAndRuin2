@@ -90,8 +90,15 @@ public class DataAccess {
 			Question q5;
 			Question q6;
 
+			Fee f1 = new Fee((float)1.9, "Atletico");
+			Fee f2 = new Fee((float) 3.5, "Draw");
+			Fee f3 = new Fee((float) 3.0, "Athletic");
+
 			if (Locale.getDefault().equals(new Locale("es"))) {
 				q1 = ev1.addQuestion("¿Quién ganará el partido?", 1);
+				q1.addFee(f1);
+				q1.addFee(f2);
+				q1.addFee(f3);
 				q2 = ev1.addQuestion("¿Quién meterá el primer gol?", 2);
 				q3 = ev11.addQuestion("¿Quién ganará el partido?", 1);
 				q4 = ev11.addQuestion("¿Cuántos goles se marcarán?", 2);
@@ -99,9 +106,9 @@ public class DataAccess {
 				q6 = ev17.addQuestion("¿Habrá goles en la primera parte?", 2);
 			} else if (Locale.getDefault().equals(new Locale("en"))) {
 				q1 = ev1.addQuestion("Who will win the match?", 1);
-				q1.addFee(new Fee((float) 1.9, "Atletico", q1));
-				q1.addFee(new Fee((float) 3.5, "Draw", q1));
-				q1.addFee(new Fee((float) 3.0, "Athletic", q1));
+				q1.addFee(f1);
+				q1.addFee(f2);
+				q1.addFee(f3);
 				q2 = ev1.addQuestion("Who will score first?", 2);
 				q3 = ev11.addQuestion("Who will win the match?", 1);
 				q4 = ev11.addQuestion("How many goals will be scored in the match?", 2);
@@ -109,6 +116,9 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Will there be goals in the first half?", 2);
 			} else {
 				q1 = ev1.addQuestion("Zeinek irabaziko du partidua?", 1);
+				q1.addFee(f1);
+				q1.addFee(f2);
+				q1.addFee(f3);
 				q2 = ev1.addQuestion("Zeinek sartuko du lehenengo gola?", 2);
 				q3 = ev11.addQuestion("Zeinek irabaziko du partidua?", 1);
 				q4 = ev11.addQuestion("Zenbat gol sartuko dira?", 2);
@@ -116,7 +126,6 @@ public class DataAccess {
 				q6 = ev17.addQuestion("Golak sartuko dira lehenengo zatian?", 2);
 			}
 
-			//Fee f1 = q1.addFee(new Fee(5F,"Atletico"));
 
 			User u2 = new User("user", "user", false);
 			User u1 = new User("admin", "admin", true);
@@ -149,7 +158,9 @@ public class DataAccess {
 			db.persist(ev19);
 			db.persist(ev20);
 
-			//db.persist(f1);
+			db.persist(f1);
+			db.persist(f2);
+			db.persist(f3);
 
 			db.persist(u1);
 			db.persist(u2);
@@ -351,13 +362,14 @@ public class DataAccess {
 	}
 
 	public Fee setFee(String result, Float fee, Question quest, Event ev) {
-		Fee f = new Fee(fee, result, quest);
+		Fee f = new Fee(fee, result);
 		TypedQuery<Question> q1 = db.createQuery("SELECT q FROM Question q WHERE q.question = ?1", Question.class);
 		q1.setParameter(1, quest.getQuestion());
 		List<Question> questList = q1.getResultList();
 
 		Question q = questList.get(0);
 		db.getTransaction().begin();
+		db.persist(f);
 		q.addFee(f);
 		db.getTransaction().commit();
 		return f;
@@ -434,6 +446,7 @@ public class DataAccess {
 		User current = userList.get(0);
 		changeMoney(current,-stake,"Bet: " + e.getDescription());
 		current.addBet(b);
+		f.addBet(b);
 		db.persist(b);
 		db.getTransaction().commit();
 
@@ -479,6 +492,20 @@ public class DataAccess {
 
 	public void removeEvent(Event event){
 		db.getTransaction().begin();
+		TypedQuery<Movement> q1 = db.createQuery("SELECT m FROM Movement m WHERE m.event = ?1",Movement.class);
+		q1.setParameter(1,"Bet: " +event.getDescription());
+		List<Movement> movementList = q1.getResultList();
+		TypedQuery<User> q2 = db.createQuery("SELECT u FROM User u",User.class);
+		List<User> userList = q2.getResultList();
+		for(Movement m:movementList){
+			for(User user:userList){
+				if(user.getMovements().contains(m)){
+					user.removeMovement(m);
+					changeMoney(user,-m.getBalance(),"Event has been removed");
+				}
+			}
+			db.remove(m);
+		}
 		db.remove(event);
 		db.getTransaction().commit();
 	}
