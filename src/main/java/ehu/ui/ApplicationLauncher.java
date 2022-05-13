@@ -19,23 +19,8 @@ public class ApplicationLauncher {
     BlFacade businessLogic;
 
     try {
-
-     // if (config.isBusinessLogicLocal())
+      //In order to make the executable files, we decided to make the businessLogic local
       businessLogic = BlFacadeImplementation.getInstance();
-
-     // else {
-
-   //     String serviceName= "http://" + config.getBusinessLogicNode() + ":" +
-     //       config.getBusinessLogicPort() + "/ws/" + config.getBusinessLogicName() +
-       //     "?wsdl";
-        //URL url = new URL(serviceName);
-
-        // 1st argument refers to above wsdl document
-        // 2nd argument is service name, refer to wsdl document above
-        //QName qname = new QName("http://businessLogic/", "BlFacadeImplementationService");
-       // Service service = Service.create(url, qname);
-       // businessLogic = service.getPort(BlFacade.class);
-      //}
 
       new MainGUI(businessLogic);
 

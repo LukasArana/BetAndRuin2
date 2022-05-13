@@ -11,10 +11,6 @@ public class Bet {
     @Id
     @GeneratedValue
     private Integer id;
-    //private String username;
-
-    //@Id
-    //private Question betEvent;
 
     public Bet(Fee fee, Float stake) {
         this.fee = fee;
@@ -29,17 +25,4 @@ public class Bet {
         return this.stake;
     }
 
-    @Override
-    public String toString(){
-        return "Stake: " + this.stake;
-    }
-
-    /**
-    public Bet(Fee Fee, Float stake, String username, Question betEvent) {
-        this.Fee = Fee;
-        this.stake = stake;
-        this.username = username;
-        this.betEvent = betEvent;
-    }
-     */
 }

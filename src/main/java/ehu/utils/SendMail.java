@@ -13,8 +13,6 @@ import javax.mail.internet.MimeMessage;
 import static java.lang.String.format;
 
 public class SendMail {
-    public void SendMail(){
-    }
     public void sendMail(String email, String username, Integer code) {
 
         // Recipient's email ID needs to be mentioned.

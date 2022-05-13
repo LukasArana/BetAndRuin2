@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -66,59 +65,6 @@ public class MainGUI {
       } catch (Exception e){
         throw new RuntimeException(e);
       }
-
-     /* if (controllerClass == BrowseQuestionsController.class) {
-        return new BrowseQuestionsController(businessLogic);
-      }
-      else if (controllerClass == CreateQuestionController.class) {
-        return new CreateQuestionController(businessLogic);
-      }
-      else if(controllerClass == LoginController.class){
-        return new LoginController(businessLogic);
-      }
-      else if(controllerClass == RegisterController.class){
-        return new RegisterController(businessLogic);
-      }
-      else if(controllerClass == SetFeesController.class){
-        return new SetFeesController(businessLogic);
-      }
-      else if(controllerClass == CreateEventsController.class){
-        return new CreateEventsController(businessLogic);
-      }
-      else if(controllerClass == UserGUIController.class){
-        return new UserGUIController(businessLogic);
-      }
-      else if(controllerClass == PlaceBetController.class){
-        return new PlaceBetController(businessLogic);
-      }
-      else if(controllerClass == DepositMoneyController.class){
-        return new DepositMoneyController(businessLogic);
-      }
-      else if (controllerClass == ShowMovementsController.class){
-        return new ShowMovementsController(businessLogic);
-      }
-      else if(controllerClass == PublishResultsController.class){
-        return new PublishResultsController(businessLogic);
-      }
-      else if(controllerClass == LostPasswordController.class){
-        return new LostPasswordController(businessLogic);
-      } else if (controllerClass == ChangePasswordController.class){
-        return new ChangePasswordController(businessLogic);
-      }
-      else if(controllerClass == RemoveEventController.class){
-        return new RemoveEventController(businessLogic);
-      }
-      else {
-        // default behavior for controllerFactory:
-        try {
-          return controllerClass.getDeclaredConstructor().newInstance();
-        } catch (Exception exc) {
-          exc.printStackTrace();
-          throw new RuntimeException(exc); // fatal, just bail...
-        }
-      }
-*/
-
     });
     window.ui = loader.load();
     ((Controller) loader.getController()).setMainApp(this);
@@ -150,10 +96,6 @@ public class MainGUI {
     showLogin();
 
   }
-
-//  public void start(Stage stage) throws IOException {
-//      init(stage);
-//  }
 
 //This method will only be called from LoginController
   public void showMain(String username){
@@ -221,7 +163,5 @@ public class MainGUI {
   public String getUsername(){
     return businessLogic.getCurrentUser().getUsername();
   }
-//  public static void main(String[] args) {
-//    launch();
-//  }
+
 }

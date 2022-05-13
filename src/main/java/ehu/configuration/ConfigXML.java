@@ -12,11 +12,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.net.URL;
+
 import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.nio.file.Paths;
 
 
@@ -132,49 +130,16 @@ public class ConfigXML {
 
 	}
 
-	// get a file from the resources folder
-	// works everywhere, IDEA, unit test and JAR file.
-	private InputStream getFileFromResourceAsStream(String fileName) {
-
-		// The class loader that loaded the class
-		ClassLoader classLoader = getClass().getClassLoader();
-		InputStream inputStream = classLoader.getResourceAsStream(fileName);
-
-		// the stream holding the file content
-		if (inputStream == null) {
-			throw new IllegalArgumentException("file not found! " + fileName);
-		} else {
-			return inputStream;
-		}
-	}
-
-	private File getFileFromResource(String fileName) throws URISyntaxException {
-
-		ClassLoader classLoader = getClass().getClassLoader();
-		URL resource = classLoader.getResource(fileName);
-		if (resource == null) {
-			throw new IllegalArgumentException("file not found! " + fileName);
-		} else {
-
-			// failed if files have whitespaces or special characters
-			//return new File(resource.getFile());
-
-			return new File(resource.toURI());
-		}
-
-	}
-
 	/**
 	 * Will try to search for the configuration file in $HOME/config/config.xml
 	 * and if that fails, in $PROJECT/config/config.xml
 	 * @return File
 	 */
+	//Config folder must be place in the $HOME folder before executing the program.
 	private File getFile(){
 		String userHome = System.getProperty("user.home");
-		System.out.println(userHome);
-		if (Files.exists(Paths.get(userHome + "/" + CONFIGURATION_FILENAME))) {
-			System.out.println("a");
 
+		if (Files.exists(Paths.get(userHome + "/" + CONFIGURATION_FILENAME))) {
 			return new File(userHome + "/" + CONFIGURATION_FILENAME);
 		} else {
 			System.out.println("b");
@@ -190,14 +155,6 @@ public class ConfigXML {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(getFile());
-
-
-			// Document doc = dBuilder.parse(getFileFromResourceAsStream("config.xml"));
-
-//			ClassLoader classLoader = getClass().getClassLoader();
-//			File file = new File(classLoader.getResource("config.xml").getFile());
-//			InputStream inputStream = new FileInputStream(file);
-//			Document doc = dBuilder.parse(inputStream);
 
 			doc.getDocumentElement().normalize();
 
