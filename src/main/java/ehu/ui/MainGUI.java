@@ -131,7 +131,7 @@ public class MainGUI {
     this.stage = stage;
 
     mainLag = load("/MainGUI.fxml");
-    browseQuestionsLag = load("/BrowseQuestions.fxml");
+   browseQuestionsLag = load("/BrowseQuestions.fxml");
     createQuestionLag = load("/CreateQuestion.fxml");
     loginWin = load("/Login.fxml");
     registerWin = load("/Register.fxml");

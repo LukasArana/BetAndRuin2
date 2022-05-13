@@ -142,17 +142,16 @@ public class RemoveBetController implements Controller{
         for(Bet b: actual.getBetList()){
             betData.add(b);
             f = b.getFee();
-            Question q = f.getQuestion();
-            if (q!=null) {
-                questionData.add(q);
-                eventData.add(q.getEvent());
+           // Question q = f.getQuestion();
+           // if (q!=null) {
+           //     questionData.add(q);
+           //     eventData.add(q.getEvent());
             }
         }
 
 
         //eventTable.getItems().addAll(eventData);
         //questionTable.getItems().addAll(questionData);
-        resultTable.getItems().addAll(betData);
+       //resultTable.getItems().addAll(betData);
 
     }
-}

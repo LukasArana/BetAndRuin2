@@ -76,6 +76,9 @@ public class User {
 	public void addMovement(Movement m){
 		this.movements.add(m);
 	}
+	public void removeMovement(Movement m){
+		this.movements.remove(m);
+	}
 	public ArrayList<Movement> getMovements(){return this.movements;}
 
 	public void addBet(Bet b) {
