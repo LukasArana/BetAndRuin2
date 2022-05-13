@@ -26,7 +26,7 @@ public class LostPasswordController implements Controller {
     private Label answrLbl;
 
     @FXML
-    private PasswordField emailField;
+    private TextField emailField;
 
     @FXML
     private Button backBtn;

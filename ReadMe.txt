@@ -18,7 +18,7 @@ NOTE: We found out that in some cases windows defender identifies this program a
 
 Lost password use case was easier than expected, once discovered how to send an email via smtp the rest was straight forward.
 
-(To do this second iteration of the bet&ruin project, we've created 3 new use cases: Deposit money, place a bet and view money movements,
+To do this second iteration of the bet&ruin project, we've created 3 new use cases: Deposit money, place a bet and view money movements,
 as well as changing everything from the first sprint to JavaFX and SceneBuilder. In the process, we also updated some of the domain
 classes when needed.
 One of the problems we encountered was how to store the money movements of a user. In the end, we decided that we could keep track
