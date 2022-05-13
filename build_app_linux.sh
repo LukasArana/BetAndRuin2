@@ -94,7 +94,7 @@ $JAVA_HOME/bin/jpackage \
 --main-jar "${MAIN_JAR}" \
 --java-options -Xmx2048m \
 --runtime-image target/java-runtime \
---icon src/main/logo/richard.jpg \
+--icon src/main/logo/linux.png \
 --app-version "${APP_VERSION}" \
 --vendor "UPV/EHU" \
 --copyright "Copyright © 2021-22 Team Lagu"

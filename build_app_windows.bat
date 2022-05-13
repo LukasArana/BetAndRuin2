@@ -89,7 +89,7 @@ call "%JAVA_HOME%\bin\jpackage" ^
   --main-jar %MAIN_JAR% ^
   --java-options -Xmx2048m ^
   --runtime-image target/java-runtime ^
-  --icon src/main/logo/windows/unkown.ico ^
+  --icon src/main/logo/windows.ico ^
   --app-version %APP_VERSION% ^ ^
   --vendor "UPV/EHU" ^
   --copyright "Copyright © 2021-22 Team Lagu" ^
