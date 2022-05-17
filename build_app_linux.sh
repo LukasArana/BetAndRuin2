@@ -13,7 +13,7 @@ JAVA_VERSION=17
 MAIN_JAR="BetAndRuin-$PROJECT_VERSION.jar"
 
 # Set desired installer type: "app-image", "rpm" or "deb".
-INSTALLER_TYPE=app-image
+INSTALLER_TYPE=deb
 
 echo "java home: $JAVA_HOME"
 echo "project version: $PROJECT_VERSION"
